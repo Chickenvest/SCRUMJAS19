@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { Product } from "app/models/product.model";
-import { ShoppingCart } from "app/models/shopping-cart.model";
-import { ProductsDataService } from "app/services/products.service";
-import { ShoppingCartService } from "app/services/shopping-cart.service";
-import { Observable } from "rxjs/Observable";
-import { Observer } from "rxjs/Observer";
+import { Product } from "../../models/product.model";
+import { ShoppingCart } from "../../models/shopping-cart.model";
+import { ProductsDataService } from "../../services/products.service";
+import { ShoppingCartService } from "../../services/shopping-cart.service";
+import { Observable } from "rxjs";
+import { Observer } from "rxjs";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
