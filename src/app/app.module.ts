@@ -9,9 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EduChooserComponent } from './components/edu-chooser/edu-chooser.component';
 import { OrderComponent } from './components/order/order.component';
+import { OrderFormComponent } from './components/order-form/order-form.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AboutComponent, NavbarComponent, EduChooserComponent, OrderComponent],
+  declarations: [AppComponent, HomeComponent, AboutComponent, NavbarComponent, EduChooserComponent, OrderComponent, OrderFormComponent],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

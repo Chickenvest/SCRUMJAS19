@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { from, Observable } from 'rxjs';
 import { CartItemService, CartItem } from '../../services/cart-item.service';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.scss']
+  styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent implements OnInit {
   cartItems: CartItem[] = [];
 
-  constructor(private cartItemService: CartItemService) { }
+  constructor(private cartItemService: CartItemService) {}
 
   ngOnInit(): void {
-    this.cartItemService.getCartItems();
+    this.cartItems = this.cartItemService.getCartItems();
+    console.log(this.cartItems);
   }
 
   onRemoveOrder(cartItem: CartItem) {
@@ -29,8 +31,4 @@ export class OrderComponent implements OnInit {
     this.cartItemService.onItemDecrease(cartItem);
     this.cartItems = this.cartItemService.getCartItems();
   }
-
 }
-
-
-

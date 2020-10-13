@@ -28,17 +28,10 @@ export interface IEcliteratureService {
   providedIn: 'root',
 })
 export class EcliteratureService implements IEcliteratureService {
-  find(arg0: (p: any) => boolean) {
-    throw new Error('Method not implemented.');
-  }
-  // tslint:disable-next-line:member-ordering
   ecliteratures = new Subject<Ecliterature[]>();
-  // tslint:disable-next-line:member-ordering
   ecliterature$ = this.ecliteratures.asObservable();
 
-  // tslint:disable-next-line:member-ordering
   products = new Subject<Product[]>();
-  // tslint:disable-next-line: member-ordering
   products$ = this.products.asObservable();
 
   constructor(private http: HttpClient) {}
@@ -52,11 +45,10 @@ export class EcliteratureService implements IEcliteratureService {
   }
 
   getProducts(): void {
-    this.http.get('https://eckurslitteratur.herokuapp.com/api/products').subscribe((products: Product[]) => {
-      this.products.next(products);
-    });
+    this.http
+      .get('https://eckurslitteratur.herokuapp.com/api/products')
+      .subscribe((products: Product[]) => {
+        this.products.next(products);
+      });
   }
 }
-
-
-
