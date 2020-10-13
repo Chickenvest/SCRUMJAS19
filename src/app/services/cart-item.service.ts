@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Product, Ecliterature } from './ecliterature.service';
 
 export interface CartImage {
-  imageId: number;
-  imageUrl: string;
+  id: number;
+  Url: string;
 }
 
 export interface CartItem extends CartImage {
@@ -32,8 +32,8 @@ export class CartItemService {
         total: 1,
         price: product.Price,
         product: product.Product,
-        imageUrl: ecliterature.Url,
-        imageId: ecliterature.id
+        Url: ecliterature.Url,
+        id: ecliterature.id
       });
     }
   }
@@ -41,7 +41,7 @@ export class CartItemService {
   removeCartItem(cartItem: CartItem) {
     const index = this.cartItems.findIndex(
       ({ productId }) => productId === cartItem.productId,
-      ({ ecliteratureId }) => ecliteratureId === cartItem.imageId
+      ({ ecliteratureId }) => ecliteratureId === cartItem.id
     );
 
     if (index > -1) {
@@ -58,7 +58,7 @@ export class CartItemService {
 
   onItemIncrease(cartItem: CartItem) {
     const index = this.cartItems.findIndex(({ productId }) => productId === cartItem.productId,
-      ({ ecliteratureId }) => ecliteratureId === cartItem.imageId
+      ({ ecliteratureId }) => ecliteratureId === cartItem.id
     );
 
     if (index > -1) {
@@ -73,7 +73,7 @@ export class CartItemService {
 
   onItemDecrease(cartItem: CartItem) {
     const index = this.cartItems.findIndex(({ productId }) => productId === cartItem.productId,
-      ({ ecliteratureId }) => ecliteratureId === cartItem.imageId
+      ({ ecliteratureId }) => ecliteratureId === cartItem.id
     );
 
     if (index > -1) {
