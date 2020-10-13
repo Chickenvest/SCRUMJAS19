@@ -44,9 +44,11 @@ export class EcliteratureService implements IEcliteratureService {
   }
 
   getProducts(): void {
-    this.http.get('http://localhost:4000/api/products').subscribe((products: Product[]) => {
-      this.products.next(products);
-    });
+    this.http
+      .get('https://eckurslitteratur.herokuapp.com/api/products')
+      .subscribe((products: Product[]) => {
+        this.products.next(products);
+      });
   }
 }
 
