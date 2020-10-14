@@ -1,10 +1,13 @@
 <div class="order-wrapper">
+  <div class="name-filler">
+    <app-order-form></app-order-form>
+  </div>
   <div class="title-product-wrapper">
     <div class="title">
-      <div>Product Image</div>
-      <div>Product Title</div>
-      <div>Product Action</div>
-      <div>Total Cost:</div>
+      <div>Produktbild</div>
+      <div>Produkt titel</div>
+      <div>Produktåtgärd</div>
+      <div>Total kostnad:</div>
     </div>
     <div class="products-container-wrapper">
       <div class="products-container">
@@ -13,7 +16,7 @@
             <div class="cart-product" *ngFor="let cartItem of cartItems">
               <div>
                 <img
-                  src="{{ cartItem.Url }}"
+                  src="{{ cartItem.imageUrl }}"
                   alt=""
                   width="150px"
                   height="150px"
@@ -44,7 +47,5 @@
     </div>
   </div>
 </div>
-
-
 
 

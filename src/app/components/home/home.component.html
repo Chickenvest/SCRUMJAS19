@@ -1,34 +1,34 @@
 <div class="cart-wrapper">
-  <a routerLink="/order/">{{ totalCartItem }} items in cart</a>
+  <a routerLink="/order/">{{ totalCartItem }} artiklar i kundvagn</a>
 </div>
 
-<p
-  style="
-  list-style: 'none';
-  display: 'flex';
-  flex-wrap: 'wrap';
-  justify-content: space-around;
+<div
+  style = "
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: center;
   "
 >
-  <span *ngFor="let ecl of ecliteratures">
+  <div *ngFor="let ecl of ecliteratures">
+    <div>
       <img
-        [src]="ecl.Url"
-        alt="img"
-        style="width: '150px'; height: '150px'"
+      [src]="ecl.Url"
+      alt="img"
+      style="width: '150px'; height: '150px';"
       />
+    </div>
+    <div>
       <button (click)="onAddProduct(ecl)" *ngIf="!isProductInCart(ecl)">
-        Add to Cart
+        Lägg till
       </button>
-  </span>
-
-  <span *ngFor="let prod of products">
-    {{ prod.Product }}<br>
+    </div>
+  </div>
+  <p *ngFor="let prod of products">
+    {{ prod.Product }}|<br>
     {{ prod.Price }} $<br>
-    <button (click)="onAddProduct(prod)" *ngIf="!isProductInCart(prod)">
-      Add to Cart
-    </button>
-  </span>
-</p>
+  </p>
 
+</div>
 
 

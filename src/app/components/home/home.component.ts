@@ -1,33 +1,40 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CartItemService } from 'src/app/services/cart-item.service';
-import { Ecliterature, EcliteratureService, Product } from '../../services/ecliterature.service';
+import {
+  Ecliterature,
+  EcliteratureService,
+  Product,
+} from '../../services/ecliterature.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   ecliteratures: Ecliterature[] = [];
   products: Product[] = [];
   totalCartItem: number;
+  @Output() sendProduct = new EventEmitter();
+  @Output() sendEcliterature = new EventEmitter();
 
-  constructor(private service: EcliteratureService,
+  constructor(
+    private service: EcliteratureService,
     // tslint:disable-next-line: align
     private productService: EcliteratureService,
     // tslint:disable-next-line:align
     private cartItemService: CartItemService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.service.ecliterature$.subscribe(ecliteratures => {
+    this.service.ecliterature$.subscribe((ecliteratures) => {
       this.ecliteratures = ecliteratures;
 
       console.log(ecliteratures);
     });
     this.service.getEcliteratures();
 
-    this.productService.products$.subscribe(products => {
+    this.productService.products$.subscribe((products) => {
       this.products = products;
 
       console.log(this.products);
@@ -38,28 +45,31 @@ export class HomeComponent implements OnInit {
   }
 
   onAddProduct(ecliterature: Ecliterature) {
-    const product = this.products.find((p) => p.Id === ecliterature.ProductId);
+    const product = this.products.find(
+      (prod) => prod.Id === ecliterature.ProductId
+    );
+    this.sendProduct.emit(product);
+    this.sendEcliterature.emit(ecliterature);
     this.cartItemService.addToCart(product, ecliterature);
     this.totalCartItem = this.cartItemService.getCartItems().length;
   }
 
   isProductInCart(ecliterature: Ecliterature) {
-    return !this.cartItemService.getCartItems.bind(({ productId }) => productId === ecliterature.ProductId,
+    return !this.cartItemService.getCartItems.bind(
+      ({ productId }) => productId === ecliterature.ProductId,
       ({ ecliteratureId }) => ecliteratureId === ecliterature.id
     );
   }
 
-  onRemoveFromCart(ecliterature: Ecliterature) {
-    const product = this.products.find((p) => p.Id === ecliterature.ProductId);
+  onRemoveFromCart(product: Product, ecliterature: Ecliterature) {
     this.cartItemService.removeCartItem({
       productId: product.Id,
       total: 1,
       price: 0,
       product: product.Product,
-      Url: ecliterature.Url,
-      id: ecliterature.id
+      imageUrl: ecliterature.Url,
+      imageId: ecliterature.id,
     });
     this.totalCartItem = this.cartItemService.getCartItems().length;
   }
 }
-
