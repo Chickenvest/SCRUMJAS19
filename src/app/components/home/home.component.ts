@@ -11,8 +11,6 @@ export class HomeComponent implements OnInit {
   ecliteratures: Ecliterature[] = [];
   products: Product[] = [];
   totalCartItem: number;
-  @Output() sendProduct = new EventEmitter();
-  @Output() sendEcliterature = new EventEmitter();
 
   constructor(private service: EcliteratureService,
     // tslint:disable-next-line: align
@@ -39,27 +37,27 @@ export class HomeComponent implements OnInit {
     this.totalCartItem = this.cartItemService.getCartItems().length;
   }
 
-  onAddProduct(product: Product, ecliterature: Ecliterature) {
-    this.sendProduct.emit(product);
-    this.sendEcliterature.emit(ecliterature);
+  onAddProduct(ecliterature: Ecliterature) {
+    const product = this.products.find((p) => p.Id === ecliterature.ProductId);
     this.cartItemService.addToCart(product, ecliterature);
     this.totalCartItem = this.cartItemService.getCartItems().length;
   }
 
-  isProductInCart(product: Product, ecliterature: Ecliterature) {
-    return !this.cartItemService.getCartItems.bind(({ productId }) => productId === product.Id,
+  isProductInCart(ecliterature: Ecliterature) {
+    return !this.cartItemService.getCartItems.bind(({ productId }) => productId === ecliterature.ProductId,
       ({ ecliteratureId }) => ecliteratureId === ecliterature.id
     );
   }
 
-  onRemoveFromCart(product: Product, ecliterature: Ecliterature) {
+  onRemoveFromCart(ecliterature: Ecliterature) {
+    const product = this.products.find((p) => p.Id === ecliterature.ProductId);
     this.cartItemService.removeCartItem({
       productId: product.Id,
       total: 1,
       price: 0,
       product: product.Product,
-      imageUrl: ecliterature.Url,
-      imageId: ecliterature.id
+      Url: ecliterature.Url,
+      id: ecliterature.id
     });
     this.totalCartItem = this.cartItemService.getCartItems().length;
   }
