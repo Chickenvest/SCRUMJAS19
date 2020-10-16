@@ -14,15 +14,15 @@
       <div>
         <img [src]="ecl.Url" alt="img" style="width: '150px'; height: '150px';" />
       </div>
+      <button mat-raised-button color="primary" (click)="onAddProduct(ecl)" *ngIf="!isProductInCart(ecl)">
+        Lägg till
+      </button>
       <div>
-        <button (click)="onAddProduct(ecl)" *ngIf="!isProductInCart(ecl)">
-          Lägg till
-        </button>
+        {{ products[i].Product }}|
       </div>
-      <p>
-        {{ products[i].Product }}|<br>
-        {{ products[i].Price }} : -<br>
-      </p>
+      <div>
+        {{ products[i].Price }} : -
+      </div>
     </mat-card>
   </div>
   <div style="
