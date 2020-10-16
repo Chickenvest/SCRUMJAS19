@@ -1,5 +1,7 @@
 .cart-wrapper {
-  margin-left: 29em;
+  display: flex;
+  justify-content: center;
+  align-self: center;
 }
 
 button {
@@ -7,4 +9,10 @@ button {
   text-align: center;
 }
 
-p { text-align: center;}
+p {
+  text-align: center;
+}
+
+mat-card {
+  margin: 1rem;
+}
