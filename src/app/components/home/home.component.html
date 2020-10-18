@@ -1,35 +1,40 @@
 <div class="cart-wrapper">
-  <a routerLink="/order/">{{ totalCartItem }} artiklar i kundvagn</a>
+  <p routerLink="/order/">{{ totalCartItem }} artiklar i kundvagn</p>
 </div>
 
-<div
-  style = "
+<div>
+  <div style="
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     justify-content: center;
-  "
->
-  <div *ngFor="let ecl of ecliteratures">
-    <div>
-      <img
-      [src]="ecl.Url"
-      alt="img"
-      style="width: '150px'; height: '150px';"
-      />
-    </div>
-    <div>
-      <button (click)="onAddProduct(ecl)" *ngIf="!isProductInCart(ecl)">
+  ">
+
+    <div *ngFor="let ecl of ecliteratures; let i = index">
+      <div>
+        <img [src]="ecl.Url" alt="img" style="width: '150px'; height: '150px';" />
+      </div>
+      <button mat-raised-button color="primary" (click)="onAddProduct(ecl)" *ngIf="!isProductInCart(ecl)">
         Lägg till
       </button>
+      <div>
+        {{ products[i].Product }}|
+      </div>
+      <div>
+        {{ products[i].Price }} : -
+      </div>
     </div>
   </div>
-  <p *ngFor="let prod of products">
-    {{ prod.Product }}|<br>
-    {{ prod.Price }} $<br>
-  </p>
+  <div style="
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: center;
+  ">
+  </div>
 
+<<<<<<< HEAD
+
+=======
 </div>
-
-
-
+>>>>>>> d60a6e9dea1f9845f6a2d1bdc31428a988675ba2

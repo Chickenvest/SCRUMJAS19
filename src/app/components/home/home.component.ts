@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
 
       console.log(ecliteratures);
     });
+
     this.service.getEcliteratures();
 
     this.productService.products$.subscribe((products) => {
