@@ -73,3 +73,5 @@ export class HomeComponent implements OnInit {
     this.totalCartItem = this.cartItemService.getCartItems().length;
   }
 }
+
+
